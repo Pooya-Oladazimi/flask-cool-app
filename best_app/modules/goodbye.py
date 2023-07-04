@@ -3,7 +3,6 @@
 from flask import Blueprint
 
 
-
 blueprint = Blueprint('bye', __name__, url_prefix='/bye')
 
 

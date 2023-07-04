@@ -2,6 +2,7 @@
 
 from flask import Flask
 from best_app.modules import hello, goodbye
+from best_app.config import CoolConfig
 
 
 def create_app():    
@@ -10,6 +11,8 @@ def create_app():
         SECRET_KEY = "My_Secret_Key"
     )     
     
+    app.config.from_object(CoolConfig)    
+
     app.register_blueprint(hello.blueprint)
     app.register_blueprint(goodbye.blueprint)
 
