@@ -2,7 +2,6 @@ FROM python:3.9-slim
 
 RUN apt-get -q -y update 
 RUN apt-get install -y gcc
-RUN apt-get install -y postgresql-client
 
 ENV USERNAME=cool-app
 ENV WORKING_DIR=/home/cool-app
