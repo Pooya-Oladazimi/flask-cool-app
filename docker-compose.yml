@@ -1,0 +1,32 @@
+version: '3.0'
+services:
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    ports:
+      - 5123:5432
+    env_file:
+      - .db.env    
+    volumes:
+      - ./pData:/var/lib/postgresql/data
+    healthcheck:      
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} -t 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 10s   
+    
+  
+  best_app:
+    container_name: best-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8008:5000    
+    depends_on:
+      db:
+        condition: service_healthy    
+    links: 
+        - db
