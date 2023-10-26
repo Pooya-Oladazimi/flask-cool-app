@@ -17,8 +17,7 @@ def login():
             "client_secret":"YOUR_AUTH_APP_CLIENT_SECRET",
             "redirect_uri": "http://localhost:3000/login"                
         }
-    resp = requests.post("https://github.com/login/oauth/access_token", data=auth_data)       
-    print(resp.text)
+    resp = requests.post("https://github.com/login/oauth/access_token", data=auth_data)           
     if resp.status_code == 200 and "access_token=" in resp.text:        
         token = resp.text.split("access_token=")[1]
         token = token.split("&")[0]
